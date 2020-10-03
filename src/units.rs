@@ -13,7 +13,7 @@ pub enum MemoryUnit {
 
 impl MemoryUnit {
 
-    /// Returns the traditional size of the memory unit
+    /// Returns the "traditional" size of the memory unit
     pub fn size(&self) -> u128 {
         match self {
             MemoryUnit::Byte      => BYTE_SIZE.into(),
@@ -28,7 +28,7 @@ impl MemoryUnit {
         }
     }
 
-    /// Returns the metric size of the memory unit
+    /// Returns the metric decimal size of the memory unit
     pub fn decimal_size(&self) -> u128 {
         match self {
             MemoryUnit::Byte      => DECIMAL_BYTE_SIZE.into(),
@@ -53,7 +53,6 @@ pub const PETABYTE_SIZE:  u64  = 1_125_899_906_842_624;             // 2 ^ 50
 pub const EXABYTE_SIZE:   u64  = 1_152_921_504_606_846_976;         // 2 ^ 60
 pub const ZETTABYTE_SIZE: u128 = 1_180_591_620_717_411_303_424;     // 2 ^ 70
 pub const YOTTABYTE_SIZE: u128 = 1_208_925_819_614_629_174_706_176; // 2 ^ 80
-
 
 pub const DECIMAL_BYTE_SIZE:      u32  =  1;                                 // 10 ^ 0
 pub const DECIMAL_KILOBYTE_SIZE:  u32  =  1_000;                             // 10 ^ 3
