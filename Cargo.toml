@@ -1,6 +1,6 @@
 [package]
 name = "memsize"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Austin Keeley <austin.keeley@gmail.com>"]
 edition = "2018"
 description = "Memory unit sizes"
