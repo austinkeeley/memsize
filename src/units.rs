@@ -11,6 +11,39 @@ pub enum MemoryUnit {
     Yottabyte,
 }
 
+impl MemoryUnit {
+
+    /// Returns the traditional size of the memory unit
+    pub fn size(&self) -> u128 {
+        match self {
+            MemoryUnit::Byte      => BYTE_SIZE.into(),
+            MemoryUnit::Kilobyte  => KILOBYTE_SIZE.into(),
+            MemoryUnit::Megabyte  => MEGABYTE_SIZE.into(),
+            MemoryUnit::Gigabyte  => GIGABYTE_SIZE.into(),
+            MemoryUnit::Terabyte  => TERABYTE_SIZE.into(),
+            MemoryUnit::Petabyte  => PETABYTE_SIZE.into(),
+            MemoryUnit::Exabyte   => EXABYTE_SIZE.into(),
+            MemoryUnit::Zettabyte => ZETTABYTE_SIZE.into(),
+            MemoryUnit::Yottabyte => YOTTABYTE_SIZE.into(),
+        }
+    }
+
+    /// Returns the metric size of the memory unit
+    pub fn decimal_size(&self) -> u128 {
+        match self {
+            MemoryUnit::Byte      => DECIMAL_BYTE_SIZE.into(),
+            MemoryUnit::Kilobyte  => DECIMAL_KILOBYTE_SIZE.into(),
+            MemoryUnit::Megabyte  => DECIMAL_MEGABYTE_SIZE.into(),
+            MemoryUnit::Gigabyte  => DECIMAL_GIGABYTE_SIZE.into(),
+            MemoryUnit::Terabyte  => DECIMAL_TERABYTE_SIZE.into(),
+            MemoryUnit::Petabyte  => DECIMAL_PETABYTE_SIZE.into(),
+            MemoryUnit::Exabyte   => DECIMAL_EXABYTE_SIZE.into(),
+            MemoryUnit::Zettabyte => DECIMAL_ZETTABYTE_SIZE.into(),
+            MemoryUnit::Yottabyte => DECIMAL_YOTTABYTE_SIZE.into(),
+        }
+    }
+}
+
 pub const BYTE_SIZE:      u32  = 1;                                 // 2 ^ 0
 pub const KILOBYTE_SIZE:  u32  = 1_024;                             // 2 ^ 10
 pub const MEGABYTE_SIZE:  u32  = 1_048_576;                         // 2 ^ 20
@@ -32,33 +65,3 @@ pub const DECIMAL_EXABYTE_SIZE:   u64  =  1_000_000_000_000_000_000;         // 
 pub const DECIMAL_ZETTABYTE_SIZE: u128 =  1_000_000_000_000_000_000_000;     // 10 ^ 21
 pub const DECIMAL_YOTTABYTE_SIZE: u128 =  1_000_000_000_000_000_000_000_000; // 10 ^ 24
 
-
-/// Returns the multiplier using the "traditional" binary interpretation.
-pub fn binary_multiplier(m: &MemoryUnit) -> u128 {
-    match m {
-        MemoryUnit::Byte      => BYTE_SIZE.into(),
-        MemoryUnit::Kilobyte  => KILOBYTE_SIZE.into(),
-        MemoryUnit::Megabyte  => MEGABYTE_SIZE.into(),
-        MemoryUnit::Gigabyte  => GIGABYTE_SIZE.into(),
-        MemoryUnit::Terabyte  => TERABYTE_SIZE.into(),
-        MemoryUnit::Petabyte  => PETABYTE_SIZE.into(),
-        MemoryUnit::Exabyte   => EXABYTE_SIZE.into(),
-        MemoryUnit::Zettabyte => ZETTABYTE_SIZE.into(),
-        MemoryUnit::Yottabyte => YOTTABYTE_SIZE.into(),
-    }
-}
-
-/// Returns the multiplier using the metric decimal interpretation
-pub fn decimal_multiplier(m: &MemoryUnit) -> u128 {
-    match m {
-        MemoryUnit::Byte      => DECIMAL_BYTE_SIZE.into(),   
-        MemoryUnit::Kilobyte  => DECIMAL_KILOBYTE_SIZE.into(),
-        MemoryUnit::Megabyte  => DECIMAL_MEGABYTE_SIZE.into(),
-        MemoryUnit::Gigabyte  => DECIMAL_GIGABYTE_SIZE.into(),
-        MemoryUnit::Terabyte  => DECIMAL_TERABYTE_SIZE.into(),
-        MemoryUnit::Petabyte  => DECIMAL_PETABYTE_SIZE.into(),
-        MemoryUnit::Exabyte   => DECIMAL_EXABYTE_SIZE.into(), 
-        MemoryUnit::Zettabyte => DECIMAL_ZETTABYTE_SIZE.into(),
-        MemoryUnit::Yottabyte => DECIMAL_YOTTABYTE_SIZE.into(),
-    }
-}
