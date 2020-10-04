@@ -1,4 +1,8 @@
+use std::str::FromStr;
+use std::fmt::Debug;
+
 /// Memory units
+#[derive(Debug, PartialEq)]
 pub enum MemoryUnit {
     Byte,
     Kilobyte,
@@ -41,6 +45,28 @@ impl MemoryUnit {
             MemoryUnit::Zettabyte => DECIMAL_ZETTABYTE_SIZE.into(),
             MemoryUnit::Yottabyte => DECIMAL_YOTTABYTE_SIZE.into(),
         }
+    }
+}
+
+impl FromStr for MemoryUnit {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<MemoryUnit, String> {
+        let s = &s.trim().to_ascii_lowercase()[..];
+
+        match s {
+            "b"  | "byte"      => Ok(MemoryUnit::Byte),
+            "kb" | "kilobyte"  => Ok(MemoryUnit::Kilobyte),
+            "mb" | "megabyte"  => Ok(MemoryUnit::Megabyte),
+            "gb" | "gigabyte"  => Ok(MemoryUnit::Gigabyte),
+            "tb" | "terabyte"  => Ok(MemoryUnit::Terabyte),
+            "pb" | "petabyte"  => Ok(MemoryUnit::Petabyte),
+            "eb" | "exabyte"   => Ok(MemoryUnit::Exabyte),
+            "zb" | "zettabyte" => Ok(MemoryUnit::Zettabyte),
+            "yb" | "yottabyte" => Ok(MemoryUnit::Yottabyte),
+            _ => Err(String::from("Could not parse"))
+        }
+
     }
 }
 
